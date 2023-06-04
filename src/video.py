@@ -13,8 +13,9 @@ class Video:
         self.video: dict = YOUTUBE.videos().list(part='snippet,statistics,contentDetails,topicDetails',
                                                  id=video_id
                                                  ).execute()
+        self.video_id: str = video_id
+
         try:
-            self.video_id: str = video_id
             self.title: str = self.video['items'][0]['snippet']['title']
             self.url: str = f'https://www.youtube.com/watch?v={video_id}'
             self.view_count: int = self.video['items'][0]['statistics']['viewCount']
